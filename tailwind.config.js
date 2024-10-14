@@ -6,11 +6,18 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
+    light: {
       colors: {
-        background: "var(--background)",
+        background: "#F5E6E8",
+        primary: "#192A51",
+        primaryButton: "#AAA1C8",
+        secondaryButton: "#967AA1",
+        card: "#D5C6E0",
         foreground: "var(--foreground)",
       },
+    },
+    dark: {
+      colors: {},
     },
   },
   plugins: [],
