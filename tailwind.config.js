@@ -6,7 +6,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    light: {
+    extend: {
       colors: {
         background: "#F5E6E8",
         primary: "#192A51",
@@ -15,9 +15,6 @@ module.exports = {
         card: "#D5C6E0",
         foreground: "var(--foreground)",
       },
-    },
-    dark: {
-      colors: {},
     },
   },
   plugins: [],
