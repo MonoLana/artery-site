@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <div className={"flex flex-row bg-primary py-4 px-8 justify-between"}>
       <div>
-        <a className="font-bold text-2xl text-white">Artery</a>
+        <a className="font-bold text-3xl text-white">Artery</a>
       </div>
       <div className={"text-white px-4 justify-between"}>
         <Link href="#" className="px-4">
