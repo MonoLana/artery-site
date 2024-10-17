@@ -1,23 +1,29 @@
-import localFont from "next/font/local";
+import { Cinzel_Decorative, Open_Sans } from "next/font/google";
 import Navbar from "@/components/navbar";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+export const cinzel_decorative_init = Cinzel_Decorative({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font cinzel_decorative",
+  weight: ["400", "700", "900"],
 });
 
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+export const open_sans_init = Open_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font open_sans",
+  weight: "300",
 });
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={
+          "${cinzel_decorative_init.variable} ${open_sans_init.variable}"
+        }
+      >
         <Navbar />
         <main>{children}</main>
       </body>
