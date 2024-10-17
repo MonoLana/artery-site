@@ -14,10 +14,12 @@ export default function Hero() {
             "flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left"
           }
         >
-          <h1 className="font-bold text-5xl leading-none sm:text-6xl">
-            <span className="text-black">Lorem Ipsum</span>
+          <h1 className="font-cinzel_decorative font-bold text-5xl leading-none sm:text-6xl">
+            <span className="font-cinzel_decorative text-black">
+              Lorem Ipsum
+            </span>
           </h1>
-          <p className="mt-6 mb-8 text-lg sm:mb-12">
+          <p className="mt-6 mb-8 text-lg sm:mb-12 text-primaryText">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
