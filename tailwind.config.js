@@ -12,10 +12,10 @@ module.exports = {
         primary: "#192A51",
         primaryButton: "#AAA1C8",
         secondaryButton: "#967AA1",
+        primaryText: "#967AA2",
         card: "#D5C6E0",
         foreground: "var(--foreground)",
       },
     },
   },
-  plugins: [],
 };

@@ -2,17 +2,17 @@ import { Cinzel_Decorative, Open_Sans } from "next/font/google";
 import Navbar from "@/components/navbar";
 import "./globals.css";
 
-export const cinzel_decorative_init = Cinzel_Decorative({
+export const cinzel = Cinzel_Decorative({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font cinzel_decorative",
+  variable: "--font-cinzel",
   weight: ["400", "700", "900"],
 });
 
-export const open_sans_init = Open_Sans({
+export const opensans = Open_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font open_sans",
+  variable: "--font-opensans",
   weight: "300",
 });
 
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={
-          "${cinzel_decorative_init.variable} ${open_sans_init.variable}"
+          "${cinzel.variable} ${opensans.variable} bg-background w-full overflow-x-hidden overflow-y-auto [-ms-overflow-style:none] min-h-screenscrollbar"
         }
       >
         <Navbar />

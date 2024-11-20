@@ -1,12 +1,24 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <div className={"flex flex-row bg-primary py-4 px-8 justify-between"}>
+    <div
+      className={
+        "flex flex-row fixed w-full top-0 bg-primary px-8 justify-between content-center z-20"
+      }
+    >
       <div>
-        <a className="font-bold text-3xl text-white">Artery</a>
+        <Link href="/" className={""}>
+          <Image
+            src="/images/logo.png"
+            height={80}
+            width={80}
+            alt="Artery-logo"
+          />
+        </Link>
       </div>
-      <div className={"text-white px-4 justify-between"}>
+      <div className={"text-white px-4 justify-between content-center"}>
         <Link href="#" className="px-4">
           Cart
         </Link>
@@ -16,9 +28,11 @@ export default function Navbar() {
         <Link href="#" className="px-4">
           Merchant
         </Link>{" "}
-        <button className="rounded-lg bg-primaryButton px-6 py-2 font-bold">
-          Shop now!
-        </button>
+        <a href="/pages/home">
+          <button className="rounded-lg bg-primaryButton hover:bg-secondaryButton px-6 py-2 font-bold">
+            Shop now!
+          </button>
+        </a>
       </div>
     </div>
   );

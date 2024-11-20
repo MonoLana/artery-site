@@ -2,16 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-.cinzel_decorative {
-  font-family: var(--font-cinzel_decorative);
+:root {
+  --font-cinzel: "Cinzel Decorative";
+  --font-opensans: "Open Sans";
 }
 
-.open_sans {
-  font-family: var(--font-open_sans);
+.cinzel {
+  font-family: var(--font-cinzel);
 }
+
+.opensans {
+  font-family: var(--font-opensans);
+}
+
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* Limit to 1 line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Optional: adds ellipsis at the end */
+  }  
+
+  .scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-track {
+    background:#192A51;
   }
 }
