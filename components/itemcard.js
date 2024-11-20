@@ -28,17 +28,17 @@ const Item = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       {data.map((product) => (
         <div
           key={product.id}
-          className="flex-shrink-0 m-6 relative overflow-hidden bg-white rounded-lg max-w-xs shadow-xl"
+          className="flex-shrink-0 m-8 relative overflow-hidden bg-white rounded-lg max-w-xs shadow-xl justify-between"
         >
-          <div className="relative pt-10 px-10 flex items-center justify-center">
+          <div className="relative pt-10 px-6 flex items-center justify-center">
             <div className="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"></div>
             <img
               src={product.image}
-              className="w-40 h-auto object-cover"
+              className="w-40 h-40 object-contain"
               alt="product image"
             />
           </div>
