@@ -1,35 +1,11 @@
 "use client";
 
 import React from "react";
-import { useEffect, useState } from "react";
 
-const Item = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+const Item = ({ props }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      {data.map((product) => (
+      {props.map((product) => (
         <div
           key={product.id}
           className="flex-shrink-0 m-8 relative overflow-hidden bg-white rounded-lg max-w-xs shadow-xl justify-between"
