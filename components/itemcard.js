@@ -71,77 +71,68 @@ const Item = ({}) => {
   }
 
   const total = pagination?.totalPages;
+  const items = Array(8).fill("item");
 
   return (
-    <div>
-      {/* Product Card*/}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
-        {data.map((product) => (
-          <div
-            key={product.id}
-            className="min-w-[300px] min-h-[383px] border-2 border-darkBrown mr-2"
-          >
-            {/* Product Image */}
-            <div className="w-auto h-auto">
+    <div className="w-full mx-4 flex flex-col gap-y-4 m-4">
+      {/* Add Item Button */}
+      <div className="self-end">
+        <button className="bg-darkBrown py-2 px-4">
+          <span className="font-bold text-lg text-White">Add Items</span>
+        </button>
+      </div>
+      {/* Top contain */}
+      <div className="flex flex-row justify-between w-full border-3 border-darkBrown">
+        <div className="w-1/3 p-2 flex flex-row items-center py-4">
+          <input
+            type="checkbox"
+            id="task1"
+            className="mr-3 h-5 w-5 text-White ring-darkBrown focus:ring focus:ring-darkBrown"
+          />
+          <span className="text-xl text-Black">Product Info</span>
+        </div>
+
+        <div className="w-1/3 p-2 flex flex-row justify-between items-center px-12">
+          <span className="text-xl text-Black">Stocks</span>
+          <span className="text-xl text-Black">Price</span>
+        </div>
+        <div className="w-1/3"></div>
+      </div>
+
+      {/* cart item component */}
+      {items.map((item, index) => (
+        <div
+          key={index}
+          className="flex flex-row justify-between w-full border-3 border-darkBrown"
+        >
+          <div className="w-1/3 p-2 flex flex-row items-center">
+            <input
+              type="checkbox"
+              id="task1"
+              className="mr-3 h-5 w-5 text-White ring-darkBrown focus:ring focus:ring-darkBrown"
+            />
+            <div className="flex flex-row gap-x-1">
               <Image
                 src="/images/productExample.png"
-                alt="Product image"
-                width={300}
-                height={383}
+                alt="product image"
+                width={75}
+                height={75}
+                className="border border-darkBrown"
               />
-            </div>
-            {/* Product Information*/}
-            <div className="flex justify-between p-2 border-t-2 border-darkBrown">
-              <div className="p-2 flex flex-col">
-                {/* name + category */}
-                <div className="flex flex-row gap-x-2">
-                  <p className="text-lg text-Black font-bold">Lintong</p>
-                  <Image
-                    src="/images/verticalDivider.png"
-                    alt="divider"
-                    width={1}
-                    height={5}
-                  />
-                  <p className="text-Black/70">Arabika</p>
-                </div>
-                {/* type */}
-                <p className="text-Black/70"> Caramel Bright </p>
-                {/* Price */}
-                <p className="text-Black text-lg font-bold">Rp. 199.000</p>
-              </div>
-              <div className="flex content-center mr-1">
-                <button>
-                  <Image
-                    src="/images/add_shopping_cart.png"
-                    alt="cart button"
-                    width={34}
-                    height={34}
-                  />
-                </button>
-              </div>
+              <span className="text-xl text-Black">Product Info</span>
             </div>
           </div>
-        ))}
-      </div>
-      <div className="flex justify-between items-center px-4 py-3">
-        <div className="text-sm text-black">
-          page <b>{currentPage}</b> of {total}
+
+          <div className="w-1/3 p-2 flex flex-row justify-between items-center px-12">
+            <span className="text-xl text-Black">1520</span>
+            <span className="text-xl text-Black">Rp 49.900</span>
+          </div>
+          <div className="w-1/3 flex flex-row justify-between items-center px-12">
+            <span className="text-xl text-Black/70 font-semibold">Edit</span>
+            <span className="text-xl text-red-700 font-semibold">Delete</span>
+          </div>
         </div>
-        <div className="flex space-x-1">
-          <button
-            className="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-black bg-primaryButton hover:bg-primaryButtonHover active:bg-primaryButtonActive rounded transition duration-200 ease"
-            onClick={prevPage}
-          >
-            Prev
-          </button>
-          <button
-            className="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-black bg-primaryButton hover:bg-primaryButtonHover active:bg-primaryButtonActive rounded transition duration-200 ease"
-            onClick={nextPage}
-          >
-            Next
-          </button>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
