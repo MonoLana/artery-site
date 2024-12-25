@@ -5,22 +5,14 @@ import Productrate from "./rating";
 import Image from "next/image";
 
 // Use this component to render as detailed product that user click from catalog
-const Productdetails = ({}) => {
-  //  const {
-  //    image,
-  //    title,
-  //    description,
-  //    price,
-  //    rating: { rate, count },
-  //  } = props;
-
+const Productdetails = ({ props }) => {
   return (
     <div className="flex flex-row justify-center items-center w-full h-full min-h-[600] mt-10">
       <div className="flex flex-row w-3/5">
         <div className="border-2 border-darkBrown">
           <div className="w-full h-full">
-            <Image
-              src="/images/bigProductExample.png"
+            <img
+              src={props.coffe_img}
               width={600}
               height={600}
               alt="detail example"
@@ -33,40 +25,44 @@ const Productdetails = ({}) => {
             <div className="flex flex-col justify-center px-8 w-full">
               <div className="pt-1 pb-8 flex flex-col justify-start items-start">
                 <span className="text-xl text-Black font-semibold mr-2">
-                  Lintong
+                  {props.name}
                 </span>
-                <span className="text-3xl text-Black font-bold">Rp 49.900</span>
+                <span className="text-3xl text-Black font-bold">
+                  Rp. {new Intl.NumberFormat("id-ID").format(props.price)}
+                </span>
               </div>
               <div className="flex flex-col  mt-4">
                 <div className="flex flex-row">
                   <span className="text-Black/70 font-thin mr-2">Process:</span>
-                  <span className="text-Black font-semibold">Wash</span>
+                  <span className="text-Black font-semibold">
+                    {props.process}
+                  </span>
                 </div>
                 <div className="flex flex-row mt-1">
                   <span className="text-Black/70 font-thin mr-2">
                     Bean Type:
                   </span>
-                  <span className="text-Black font-semibold">Arabica</span>
+                  <span className="text-Black font-semibold">{props.type}</span>
                 </div>
                 <div className="flex flex-col mt-2">
                   <span className="text-Black/70 font-thin mr-2">
                     Taste Note:
                   </span>
                   <span className="text-Black font-semibold">
-                    Caramel Bright
+                    {props.taste_note}
                   </span>
                 </div>
                 <div className="flex flex-row mt-1">
                   <span className="text-Black/70 font-thin mr-2">
                     Body Level:
                   </span>
-                  <Productrate />
+                  <Productrate props={props} />
                 </div>
                 <div className="flex flex-row mt-1">
                   <span className="text-Black/70 font-thin mr-2">
                     Acid Level:
                   </span>
-                  <Productrate />
+                  <Productrate props={props} />
                 </div>
               </div>
               <div className="flex flex-row gap-x-4 justify-start py-8">
@@ -111,7 +107,7 @@ const Productdetails = ({}) => {
               </div>
               <div className="flex flex-row justify-center items-center p-2">
                 <span className="text-Black mr-1 text-sm">Stock: </span>
-                <span className="text-Black text-sm">999+</span>
+                <span className="text-Black text-sm">{props.stock}</span>
               </div>
             </div>
             {/* total & button */}
@@ -119,7 +115,7 @@ const Productdetails = ({}) => {
               <div className="flex justify-between w-full items-center">
                 <span className="text-Black/70">Subtotal</span>
                 <span className="text-2xl text-Black font-semibold">
-                  Rp 49.900
+                  Rp. {new Intl.NumberFormat("id-ID").format(props.price)}
                 </span>
               </div>
               <div className="w-full flex justify-center items-center mt-2">

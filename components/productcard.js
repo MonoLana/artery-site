@@ -77,7 +77,7 @@ const Productcard = ({ props }) => {
           >
             {/* Product Image */}
             <div className="w-[300px] h-[383px] max-w-[300px] max-h-[383px]">
-              <Link href="/pages/details">
+              <Link href={`/details/${product.id}`}>
                 <img
                   src={product.coffe_img}
                   alt="Product image"
@@ -87,7 +87,7 @@ const Productcard = ({ props }) => {
             </div>
             {/* Product Information*/}
             <div className="flex justify-between p-2 border-t-2 border-darkBrown">
-              <Link href="/pages/details">
+              <Link href={`/details/${product.id}`}>
                 <div className="p-2 flex flex-col">
                   {/* name + category */}
                   <div className="flex flex-row gap-x-2 max-w-[300ox]">

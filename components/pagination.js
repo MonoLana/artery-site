@@ -1,14 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Productcard from "./productcard";
 
-const Pagination = () => {
-  const [data, setData] = useState(null);
+const Pagination = ({ searchQuery }) => {
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState(null);
-  const [error, setError] = useState(null);
 
   const fetchData = async (page) => {
     setLoading(true);
@@ -17,10 +16,19 @@ const Pagination = () => {
         `https://43207vdf-8080.asse.devtunnels.ms/product/all?page=${page}`,
       );
       const result = await response.json();
-      setData(result.data);
-      setPagination(result.pagination);
+
+      if (result?.data && result?.pagination) {
+        setData(result.data);
+        setPagination(result.pagination);
+      } else {
+        console.error("Invalid response structure:", result);
+        setData([]);
+        setPagination(null);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
+      setData([]);
+      setPagination(null);
     } finally {
       setLoading(false);
     }
@@ -30,29 +38,47 @@ const Pagination = () => {
     fetchData(currentPage);
   }, [currentPage]);
 
+  useEffect(() => {
+    if (!loading && data) {
+      if (searchQuery) {
+        const filtered = data.filter((product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase()),
+        );
+        setFilteredData(filtered);
+      } else {
+        setFilteredData(data);
+      }
+    }
+  }, [searchQuery, data, loading]);
+
   const nextPage = () => {
     if (pagination?.totalPages && currentPage < pagination.totalPages) {
-      setCurrentPage((prev) => prev + 1);
+      setCurrentPage((prev) => Math.min(prev + 1, pagination.totalPages));
     }
   };
 
   const prevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
+      setCurrentPage((prev) => Math.max(prev - 1, 1));
     }
   };
+
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center py-4">Loading...</div>;
   }
 
   const total = pagination?.totalPages || 1;
 
   return (
     <div>
-      <Productcard props={data} />
+      {filteredData.length > 0 ? (
+        <Productcard props={filteredData} />
+      ) : (
+        <div className="text-center py-4">No products found.</div>
+      )}
       <div className="flex justify-between items-center px-4 py-3 w-full mt-6">
         <div className="text-md text-black">
-          page <b>{currentPage}</b> of {total}
+          Page <b>{currentPage}</b> of {total}
         </div>
         <div className="flex space-x-2">
           <button
@@ -60,7 +86,7 @@ const Pagination = () => {
               currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
             }`}
             onClick={prevPage}
-            disabled={currentPage == 1}
+            disabled={currentPage === 1}
           >
             Prev
           </button>
@@ -69,7 +95,7 @@ const Pagination = () => {
               currentPage === total ? "opacity-50 cursor-not-allowed" : ""
             }`}
             onClick={nextPage}
-            disabled={currentPage == total}
+            disabled={currentPage === total}
           >
             Next
           </button>

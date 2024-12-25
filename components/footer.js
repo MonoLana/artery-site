@@ -25,9 +25,9 @@ export default function Footer() {
             <Link href="/">
               <span className="text-Black/70 font-semibold text-lg">Home</span>
             </Link>
-            <Link href="#">
+            <Link href="/pages/search">
               <span className="text-Black/70 font-semibold text-lg">
-                About Us
+                Product
               </span>
             </Link>
             <Link href="#">
