@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Cinzel } from "next/font/google";
+import { Cinzel, Pixelify_Sans } from "next/font/google";
 
 export default function Hero() {
   return (

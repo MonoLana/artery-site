@@ -5,34 +5,80 @@ export default function Navbar() {
   return (
     <div
       className={
-        "flex flex-row fixed w-full top-0 bg-primary px-8 justify-between content-center z-20"
+        "flex flex-row fixed md:w-full top-0 bg-darkBrown px-8 pt-2 pb-2 justify-between content-center items-center rounded-b-xl z-10"
       }
     >
-      <div>
+      {/*Logo Container*/}
+      <div className="flex content-center">
         <Link href="/" className={""}>
           <Image
-            src="/images/logo.png"
-            height={80}
-            width={80}
+            src="/images/Artery-white.png"
+            height={55}
+            width={128}
             alt="Artery-logo"
           />
         </Link>
       </div>
-      <div className={"text-white px-4 justify-between content-center"}>
-        <Link href="#" className="px-4">
-          Cart
-        </Link>
-        <Link href="#" className="px-4">
-          Account
-        </Link>
-        <Link href="#" className="px-4">
-          Merchant
-        </Link>{" "}
-        <a href="/pages/home">
-          <button className="rounded-lg bg-primaryButton hover:bg-secondaryButton px-6 py-2 font-bold">
-            Shop now!
-          </button>
-        </a>
+      {/* Searchbar Container */}
+      <div className="flex flex-row p-2 bg-transparent rounded-3xl border border-White content-center items-center w-[550px] h-[44px]">
+        <Image
+          src="/images/search.png"
+          height={24}
+          width={24}
+          alt="Search-logo"
+        />
+        <input
+          type="text"
+          className="bg-transparent w-full ml-2 text-sm text-White font-semibold focus:outline-none"
+          placeholder="Search bar"
+        />
+      </div>
+      <div className="flex flex-row">
+        {/* button container */}
+        <div
+          className={
+            "flex flex-row text-white py-2 md:px-2 lg:px-4 justify-between items-center"
+          }
+        >
+          <Link href="/pages/cart" className="mx-2">
+            <Image
+              src="/images/shopping_cart.png"
+              height={24}
+              width={24}
+              alt="Cart-logo"
+            />
+          </Link>
+          <Link href="#" className="mx-2">
+            <Image
+              src="/images/notifications.png"
+              width={24}
+              height={24}
+              alt="Notification-logo"
+            />
+          </Link>{" "}
+          <Link href="#" className="mx-2">
+            <Image
+              src="/images/mail.png"
+              width={24}
+              height={24}
+              alt="Mail-logo"
+            />
+          </Link>
+        </div>
+        {/* username container */}
+        <div className="ml-4 mr-8 py-2">
+          <Link href="pages/buyer" className="flex flex-row">
+            <Image
+              src="/images/userFrame.png"
+              width={32}
+              height={32}
+              alt="User-logo"
+            />
+            <span className="mx-2 text-lg text-White font-semibold">
+              Username
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
   );

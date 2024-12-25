@@ -30,7 +30,7 @@ export default function Form() {
             <span>Don&apos;t have account yet? </span>
             <span className="ml-2">
               <a
-                href="#"
+                href="/pages/register"
                 className="text-primaryText hover:text-secondaryText font-bold"
               >
                 Register here

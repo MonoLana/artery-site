@@ -4,11 +4,16 @@
 
 :root {
   --font-cinzel: "Cinzel Decorative";
+  --font-pixelify: "Pixelify Sans"
   --font-opensans: "Open Sans";
 }
 
 .cinzel {
   font-family: var(--font-cinzel);
+}
+
+.nunito {
+  font-family: var(--font-nunito);
 }
 
 .opensans {
