@@ -2,12 +2,10 @@
 import React from "react";
 import Image from "next/image";
 
-const Productrate = ({ rate, count }) => {
-  const roundedRate = Math.round(rate);
-  const level = 4;
+const Productrate = ({ rate }) => {
   return (
     <div className="flex items-center">
-      {Array.from({ length: level }).map((_, i) => (
+      {Array.from({ length: rate }).map((_, i) => (
         <div key={i}>
           <Image
             src="/images/coffeBean.png"

@@ -1,8 +1,9 @@
+'use client'
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const Productcard = ({ props }) => {
+const ProductCard = ({ props }) => {
   const [sortCriteria, setSortCriteria] = useState("cheapestToHighest");
 
   const sortedData = [...props].sort((a, b) => {
@@ -22,7 +23,9 @@ const Productcard = ({ props }) => {
     <div>
       <div className="relative flex justify-between w-full py-8 px-4 items-center">
         <div>
-          <span>Menampilkan 1- x barang dari total untuk userinput</span>
+          <span>
+            Menampilkan 1 - {props.length} barang dari total untuk userinput
+          </span>
         </div>
         <div className="flex justify-between gap-x-2 content-center items-center">
           <span>Sort by:</span>
@@ -34,36 +37,24 @@ const Productcard = ({ props }) => {
                   ? "Highest to cheapest"
                   : "Sort by name"}
             </span>
-            <svg
-              className="rotate-90 group-focus:rotate-180"
-              xmlns="http://www.w3.org/2000/svg"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="m12 10.8l-3.9 3.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.6-4.6q.3-.3.7-.3t.7.3l4.6 4.6q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275z"
-              />
-            </svg>
             <div className="absolute shadow-lg -bottom-40 left-0 w-full h-max p-2 bg-white border border-zinc-200 rounded-lg flex flex-col gap-2">
               <span
                 className="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg cursor-pointer"
                 onClick={() => setSortCriteria("cheapestToHighest")}
               >
-                <p>Cheapest to highest</p>
+                Cheapest to highest
               </span>
               <span
                 className="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg cursor-pointer"
                 onClick={() => setSortCriteria("highestToCheapest")}
               >
-                <p>Highest to cheapest</p>
+                Highest to cheapest
               </span>
               <span
                 className="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg cursor-pointer"
                 onClick={() => setSortCriteria("sortByName")}
               >
-                <p>Sort by name</p>
+                Sort by name
               </span>
             </div>
           </button>
@@ -75,9 +66,8 @@ const Productcard = ({ props }) => {
             key={product.id}
             className="min-w-[300px] min-h-[383px] border-2 border-darkBrown mr-2"
           >
-            {/* Product Image */}
-            <div className="w-[300px] h-[383px] max-w-[300px] max-h-[383px]">
-              <Link href={`/details/${product.id}`}>
+            <div className="w-[300px] h-[383px]">
+              <Link href={`details/${product.id}`}>
                 <img
                   src={product.coffe_img}
                   alt="Product image"
@@ -85,28 +75,13 @@ const Productcard = ({ props }) => {
                 />
               </Link>
             </div>
-            {/* Product Information*/}
             <div className="flex justify-between p-2 border-t-2 border-darkBrown">
-              <Link href={`/details/${product.id}`}>
+              <Link href={`details/${product.id}`}>
                 <div className="p-2 flex flex-col">
-                  {/* name + category */}
-                  <div className="flex flex-row gap-x-2 max-w-[300ox]">
-                    <p className="text-lg text-Black font-bold line-clamp-1 max-w-[]">
-                      {product.name}
-                    </p>
-                    <Image
-                      src="/images/verticalDivider.png"
-                      alt="divider"
-                      width={1}
-                      height={5}
-                    />
-                    <div className="flex items-center">
-                      <p className="text-Black/70">{product.type}</p>
-                    </div>
-                  </div>
-                  {/* type */}
-                  <p className="text-Black/70">{product.taste_note} </p>
-                  {/* Price */}
+                  <p className="text-lg text-Black font-bold line-clamp-1">
+                    {product.name}
+                  </p>
+                  <p className="text-Black/70">{product.taste_note}</p>
                   <p className="text-Black text-lg font-bold">
                     Rp. {new Intl.NumberFormat("id-ID").format(product.price)}
                   </p>
@@ -130,4 +105,4 @@ const Productcard = ({ props }) => {
   );
 };
 
-export default Productcard;
+export default ProductCard;

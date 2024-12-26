@@ -9,44 +9,6 @@ const Item = ({}) => {
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState(null);
 
-  const nextPage = async () => {
-    if (currentPage < total) {
-      setCurrentPage(currentPage + 1);
-    }
-    try {
-      const response = await fetch(
-        `https://43207vdf-8080.asse.devtunnels.ms/product/all?page=${currentPage}`,
-      );
-      const result = await response.json();
-      setData(result.data);
-      setPagination(result.pagination);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false);
-      console.log(data);
-    }
-  };
-
-  const prevPage = async () => {
-    if (currentPage != 1) {
-      setCurrentPage(currentPage - 1);
-    }
-    try {
-      const response = await fetch(
-        `https://43207vdf-8080.asse.devtunnels.ms/product/all?page=${currentPage}`,
-      );
-      const result = await response.json();
-      setData(result.data);
-      setPagination(result.pagination);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false);
-      console.log(data);
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {

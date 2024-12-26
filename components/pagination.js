@@ -1,10 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Productcard from "./productcard";
 
 const Pagination = ({ searchQuery }) => {
   const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState(null);
@@ -12,9 +11,19 @@ const Pagination = ({ searchQuery }) => {
   const fetchData = async (page) => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://43207vdf-8080.asse.devtunnels.ms/product/all?page=${page}`,
-      );
+      let response = "";
+      if (searchQuery?.trim()) {
+        response = await fetch(
+          `https://43207vdf-8080.asse.devtunnels.ms/product/search?search=${searchQuery}&page=${page}`,
+        );
+        console.log("ini ada isinya");
+      } else {
+        response = await fetch(
+          `https://43207vdf-8080.asse.devtunnels.ms/product/all?page=${page}`,
+        );
+        console.log("ini ga ada isinya");
+      }
+
       const result = await response.json();
 
       if (result?.data && result?.pagination) {
@@ -36,20 +45,7 @@ const Pagination = ({ searchQuery }) => {
 
   useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage]);
-
-  useEffect(() => {
-    if (!loading && data) {
-      if (searchQuery) {
-        const filtered = data.filter((product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase()),
-        );
-        setFilteredData(filtered);
-      } else {
-        setFilteredData(data);
-      }
-    }
-  }, [searchQuery, data, loading]);
+  }, [currentPage, searchQuery]);
 
   const nextPage = () => {
     if (pagination?.totalPages && currentPage < pagination.totalPages) {
@@ -71,8 +67,8 @@ const Pagination = ({ searchQuery }) => {
 
   return (
     <div>
-      {filteredData.length > 0 ? (
-        <Productcard props={filteredData} />
+      {data.length > 0 ? (
+        <Productcard props={data} />
       ) : (
         <div className="text-center py-4">No products found.</div>
       )}

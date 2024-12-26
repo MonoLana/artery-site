@@ -1,14 +1,16 @@
-import Link from "next/link";
+"use client";
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Navbar() {
+const Navbar = ({ searchQuery, setSearchQuery }) => {
   return (
     <div
       className={
         "flex flex-row fixed md:w-full top-0 bg-darkBrown px-8 pt-2 pb-2 justify-between content-center items-center rounded-b-xl z-10"
       }
     >
-      {/*Logo Container*/}
+      {/* Logo Container */}
       <div className="flex content-center">
         <Link href="/" className={""}>
           <Image
@@ -31,10 +33,12 @@ export default function Navbar() {
           type="text"
           className="bg-transparent w-full ml-2 text-sm text-White font-semibold focus:outline-none"
           placeholder="Search bar"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
       <div className="flex flex-row">
-        {/* button container */}
+        {/* Button Container */}
         <div
           className={
             "flex flex-row text-white py-2 md:px-2 lg:px-4 justify-between items-center"
@@ -55,7 +59,7 @@ export default function Navbar() {
               height={24}
               alt="Notification-logo"
             />
-          </Link>{" "}
+          </Link>
           <Link href="#" className="mx-2">
             <Image
               src="/images/mail.png"
@@ -65,7 +69,7 @@ export default function Navbar() {
             />
           </Link>
         </div>
-        {/* username container */}
+        {/* Username Container */}
         <div className="ml-4 mr-8 py-2">
           <Link href="pages/buyer" className="flex flex-row">
             <Image
@@ -82,4 +86,6 @@ export default function Navbar() {
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;

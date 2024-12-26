@@ -6,16 +6,16 @@ import Image from "next/image";
 
 // Use this component to render as detailed product that user click from catalog
 const Productdetails = ({ props }) => {
+  console.log("dari komponen detail", props);
   return (
     <div className="flex flex-row justify-center items-center w-full h-full min-h-[600] mt-10">
       <div className="flex flex-row w-3/5">
         <div className="border-2 border-darkBrown">
-          <div className="w-full h-full">
+          <div className="w-[600px] h-[600px]">
             <img
-              src={props.coffe_img}
-              width={600}
-              height={600}
+              src={props.data.coffe_img}
               alt="detail example"
+              className="object-cover w-[600px] h-[600px]"
             />
           </div>
         </div>
@@ -25,44 +25,46 @@ const Productdetails = ({ props }) => {
             <div className="flex flex-col justify-center px-8 w-full">
               <div className="pt-1 pb-8 flex flex-col justify-start items-start">
                 <span className="text-xl text-Black font-semibold mr-2">
-                  {props.name}
+                  {props.data.name}
                 </span>
                 <span className="text-3xl text-Black font-bold">
-                  Rp. {new Intl.NumberFormat("id-ID").format(props.price)}
+                  Rp. {new Intl.NumberFormat("id-ID").format(props.data.price)}
                 </span>
               </div>
               <div className="flex flex-col  mt-4">
                 <div className="flex flex-row">
                   <span className="text-Black/70 font-thin mr-2">Process:</span>
                   <span className="text-Black font-semibold">
-                    {props.process}
+                    {props.data.process}
                   </span>
                 </div>
                 <div className="flex flex-row mt-1">
                   <span className="text-Black/70 font-thin mr-2">
                     Bean Type:
                   </span>
-                  <span className="text-Black font-semibold">{props.type}</span>
+                  <span className="text-Black font-semibold">
+                    {props.data.type}
+                  </span>
                 </div>
                 <div className="flex flex-col mt-2">
                   <span className="text-Black/70 font-thin mr-2">
                     Taste Note:
                   </span>
                   <span className="text-Black font-semibold">
-                    {props.taste_note}
+                    {props.data.taste_note}
                   </span>
                 </div>
                 <div className="flex flex-row mt-1">
                   <span className="text-Black/70 font-thin mr-2">
                     Body Level:
                   </span>
-                  <Productrate props={props} />
+                  <Productrate rate={props.data.body_level} />
                 </div>
                 <div className="flex flex-row mt-1">
                   <span className="text-Black/70 font-thin mr-2">
                     Acid Level:
                   </span>
-                  <Productrate props={props} />
+                  <Productrate rate={props.data.acid_level} />
                 </div>
               </div>
               <div className="flex flex-row gap-x-4 justify-start py-8">
@@ -107,7 +109,7 @@ const Productdetails = ({ props }) => {
               </div>
               <div className="flex flex-row justify-center items-center p-2">
                 <span className="text-Black mr-1 text-sm">Stock: </span>
-                <span className="text-Black text-sm">{props.stock}</span>
+                <span className="text-Black text-sm">{props.data.stock}</span>
               </div>
             </div>
             {/* total & button */}
@@ -115,7 +117,7 @@ const Productdetails = ({ props }) => {
               <div className="flex justify-between w-full items-center">
                 <span className="text-Black/70">Subtotal</span>
                 <span className="text-2xl text-Black font-semibold">
-                  Rp. {new Intl.NumberFormat("id-ID").format(props.price)}
+                  Rp. {new Intl.NumberFormat("id-ID").format(props.data.price)}
                 </span>
               </div>
               <div className="w-full flex justify-center items-center mt-2">
